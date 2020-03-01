@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag basic-docker-nginx:$(date +%s)
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build -t docker.pkg.github.com/gonglowbat/basic-nginx-docker/basic-docker-nginx:$(date +%s) .
+
+      - name: Push Docker image to Github Packages
+        run: docker push docker.pkg.github.com/gonglowbat/basic-nginx-docker/basic-docker-nginx:$(date +%s)
