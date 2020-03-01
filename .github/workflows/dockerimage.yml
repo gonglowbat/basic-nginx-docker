@@ -12,6 +12,9 @@ jobs:
         env:
           GIT_HASH: ${{ github.sha }}
 
+      - name: Login to Github Packages for Docker
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u gonglowbat --password-stdin docker.pkg.github.com
+
       - name: Push Docker image to Github Packages
         run: docker push docker.pkg.github.com/gonglowbat/basic-nginx-docker/basic-docker-nginx:$GIT_HASH
         env:
