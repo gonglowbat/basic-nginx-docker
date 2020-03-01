@@ -10,9 +10,9 @@ jobs:
       - name: Build the Docker image
         run: docker build -t docker.pkg.github.com/gonglowbat/basic-nginx-docker/basic-docker-nginx:$GIT_HASH .
         env:
-          GIT_HASH: $(git rev-parse --short "$GITHUB_SHA")
+          GIT_HASH: ${{ github.sha }}
 
       - name: Push Docker image to Github Packages
         run: docker push docker.pkg.github.com/gonglowbat/basic-nginx-docker/basic-docker-nginx:$GIT_HASH
         env:
-          GIT_HASH: $(git rev-parse --short "$GITHUB_SHA")
+          GIT_HASH: ${{ github.sha }}
